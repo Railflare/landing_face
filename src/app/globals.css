@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Railflare Design System — Tokens
+   ============================================================ */
+
+:root {
+  /* Flare orange */
+  --flare-50:  #FFF1E6;
+  --flare-100: #FFDDC2;
+  --flare-200: #FFB98A;
+  --flare-300: #FF9554;
+  --flare-400: #FB7728;
+  --flare-500: #F6821F;
+  --flare-600: #E25B0F;
+  --flare-700: #B84408;
+  --flare-800: #843105;
+  --flare-900: #4B1B03;
+
+  /* Paper */
+  --paper-50:  #FFFFFF;
+  --paper-100: #FFFFFF;
+  --paper-200: #FAF7F2;
+  --paper-300: #F1ECE3;
+  --paper-400: #E5DECF;
+
+  /* Ink */
+  --ink-50:  #F5F2EE;
+  --ink-100: #D9D2C9;
+  --ink-200: #A89F94;
+  --ink-300: #7E7268;
+  --ink-400: #5E544C;
+  --ink-700: #2C2520;
+  --ink-900: #1B1714;
+  --ink-950: #15110E;
+
+  /* State */
+  --green-500: #2E8F5F;
+  --green-50:  #E5F2EC;
+  --red-500:   #C2452F;
+  --red-50:    #F7E3DE;
+  --amber-500: #C58A1B;
+  --amber-50:  #F6ECD2;
+  --blue-500:  #2C6CC9;
+  --blue-50:   #DEE9F8;
+
+  /* Typography */
+  --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+  --fw-heavy:    800;
+
+  /* Spacing */
+  --space-1: 4px;  --space-2: 8px;   --space-3: 12px;
+  --space-4: 16px; --space-5: 24px;  --space-6: 32px;
+  --space-7: 48px; --space-8: 64px;  --space-9: 96px;
+  --space-10: 128px;
+
+  /* Radius */
+  --radius-1: 4px; --radius-2: 8px;  --radius-3: 12px;
+  --radius-4: 16px; --radius-5: 24px; --radius-pill: 999px;
+
+  /* Shadow */
+  --shadow-1: 0 1px 2px rgba(27,23,20,0.05), 0 1px 1px rgba(27,23,20,0.04);
+  --shadow-2: 0 4px 12px -2px rgba(27,23,20,0.08), 0 2px 4px -2px rgba(27,23,20,0.05);
+  --shadow-3: 0 12px 32px -6px rgba(27,23,20,0.12), 0 4px 12px -4px rgba(27,23,20,0.06);
+  --shadow-4: 0 24px 64px -12px rgba(27,23,20,0.18), 0 8px 24px -8px rgba(27,23,20,0.10);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in:  cubic-bezier(0.4, 0, 1, 1);
+  --dur-micro: 120ms;
+  --dur-base:  200ms;
+  --dur-page:  320ms;
+
+  /* Semantic */
+  --bg-app:      var(--paper-50);
+  --bg-recessed: var(--paper-200);
+  --bg-card:     #FFFFFF;
+  --bg-tint:     #FFF6EE;
+  --bg-grid:     radial-gradient(circle at 1px 1px, rgba(27,23,20,0.045) 1px, transparent 0);
+  --fg-1:        var(--ink-900);
+  --fg-2:        var(--ink-400);
+  --fg-3:        var(--ink-200);
+  --fg-brand:    var(--flare-500);
+  --border-1:    rgba(27,23,20,0.08);
+  --border-2:    rgba(27,23,20,0.14);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+html, body {
+  background-color: var(--bg-app);
+  background-image: var(--bg-grid);
+  background-size: 22px 22px;
+  color: var(--fg-1);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+/* ============================================================
+   Signature utilities
+   ============================================================ */
+
+.t-outline {
+  -webkit-text-stroke: 2.5px var(--flare-500);
+  color: transparent;
+}
+
+.t-fill {
+  color: var(--flare-500);
+}
+
+/* Hand-drawn underline */
+.t-underline {
+  position: relative;
+  white-space: nowrap;
+}
+.t-underline::after {
+  content: "";
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: -0.12em;
+  height: 0.22em;
+  background: radial-gradient(80% 120% at 50% 0%, var(--flare-500) 0%, var(--flare-500) 55%, transparent 60%);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 16' preserveAspectRatio='none'><path d='M2 9 Q 40 2 100 7 T 198 8' stroke='black' stroke-width='3.5' fill='none' stroke-linecap='round'/></svg>") center / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 16' preserveAspectRatio='none'><path d='M2 9 Q 40 2 100 7 T 198 8' stroke='black' stroke-width='3.5' fill='none' stroke-linecap='round'/></svg>") center / 100% 100% no-repeat;
+}
+
+/* Frame marks */
+.frame {
+  position: relative;
+  padding: 32px;
+}
+.frame::before,
+.frame::after,
+.frame > .frame-tl,
+.frame > .frame-tr,
+.frame > .frame-bl,
+.frame > .frame-br {
+  content: "";
+  position: absolute;
+  width: 10px; height: 10px;
+  border: 1.5px solid var(--flare-500);
+  background: #fff;
+  border-radius: 1px;
+}
+.frame::before  { top: -5px; left: -5px; }
+.frame::after   { top: -5px; right: -5px; }
+.frame > .frame-bl { bottom: -5px; left: -5px; }
+.frame > .frame-br { bottom: -5px; right: -5px; }
+
+.frame-dashed {
+  border: 1.5px dashed rgba(27,23,20,0.20);
+  border-radius: 6px;
+}
+.frame-dashed.is-flare {
+  border-color: var(--flare-500);
+}
+
+/* ============================================================
+   Animations
+   ============================================================ */
+
+@keyframes rfPulse {
+  0%   { box-shadow: 0 0 0 0 currentColor; opacity: 1; }
+  70%  { box-shadow: 0 0 0 6px transparent; opacity: 0.7; }
+  100% { box-shadow: 0 0 0 0 transparent; opacity: 1; }
+}
+
+.rf-pulse { animation: rfPulse 1.6s ease-out infinite; }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Cream paper texture */
+.bg-paper {
+  background-color: var(--paper-200);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(27,23,20,0.032) 1px, transparent 0),
+    radial-gradient(circle at 7px 5px, rgba(27,23,20,0.022) 1px, transparent 0);
+  background-size: 4px 4px, 11px 11px;
+}
+
+/* Coming soon X link */
+.x-link {
+  color: var(--ink-400);
+  border-color: rgba(27,23,20,0.08);
+  transition: color 150ms ease, border-color 150ms ease;
+}
+.x-link:hover {
+  color: var(--ink-900);
+  border-color: rgba(27,23,20,0.22);
+}
