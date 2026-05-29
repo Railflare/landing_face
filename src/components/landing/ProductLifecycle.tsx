@@ -22,105 +22,270 @@ const TABS: { id: TabId; label: string; soon?: boolean }[] = [
 
 function InterceptDiagram() {
   return (
-    <div className="arch-diagram">
-      <div className="arch-top-row">
-        {/* Left: Business entities with Agent CLI */}
-        <div className="arch-business-col">
-          <div className="arch-business-row">
-            <div className="arch-business-box">
-              <span className="arch-label">Business</span>
+    <div className="plc-diagram" style={{
+      padding: "30px 12px 10px",
+      overflow: "hidden",
+      overflowX: "hidden",
+      overflowY: "hidden",
+      position: "relative",
+      maxWidth: "100%",
+    }}>
+      {/* Vertical lines connecting to Railflare button */}
+      <svg style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
+        zIndex: 0,
+      }}>
+        {/* Line 1: From middle bottom of "Merchant Side interceptor" text */}
+        <line x1="168" y1="215" x2="168" y2="267" stroke="#FB7728" strokeWidth="2" strokeDasharray="4 4" />
+        {/* Line 2: From middle bottom of "Gateways" block */}
+        <line x1="320" y1="180" x2="320" y2="267" stroke="#FB7728" strokeWidth="2" strokeDasharray="4 4" />
+        {/* Line 3: From middle bottom of "Buyer Side interceptor" text */}
+        <line x1="465" y1="237" x2="465" y2="267" stroke="#FB7728" strokeWidth="2" strokeDasharray="4 4" />
+      </svg>
+
+      {/* Main Grid - scaled to fit */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "110px 70px 220px 50px 120px",
+        gap: "10px",
+        alignItems: "start",
+        position: "relative",
+        margin: "0 auto",
+        maxWidth: "100%",
+        width: "100%",
+        overflow: "hidden",
+        zIndex: 1,
+      }}>
+
+        {/* Left Column: Businesses + Agent CLIs as rows */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          {["Business 01", "Business 02", "Business 03", "Business 04"].map((business, i) => (
+            <div key={i}>
+              <div style={{
+                height: "40px",
+                border: "1.5px solid rgba(31, 36, 38, 0.2)",
+                borderRadius: "3px",
+                background: "#ffffff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "7px",
+                fontWeight: 600,
+                color: "rgba(31, 36, 38, 0.4)",
+              }}>
+                {business}
+              </div>
             </div>
-            <div className="arch-agent-cli-box">
-              <span className="arch-label">Agent CLI</span>
-            </div>
+          ))}
+        </div>
+
+        {/* Agent CLI Column - aligned with business boxes */}
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "12px" }}>
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i}>
+                <div style={{
+                  height: "40px",
+                  border: "1.5px solid #FB7728",
+                  borderRadius: "4px",
+                  background: "#ffffff",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "7px",
+                  fontWeight: 600,
+                  color: "rgba(251, 119, 40, 0.5)",
+                }}>
+                  Agent CLI
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="arch-business-row">
-            <div className="arch-business-box">
-              <span className="arch-label">Business 02</span>
-            </div>
-            <div className="arch-agent-cli-box">
-              <span className="arch-label">Agent CLI</span>
-            </div>
-          </div>
-          <div className="arch-business-row">
-            <div className="arch-business-box">
-              <span className="arch-label">Business 03</span>
-            </div>
-            <div className="arch-agent-cli-box">
-              <span className="arch-label">Agent CLI</span>
-            </div>
+          {/* Merchant Side Label */}
+          <div style={{
+            fontSize: "7px",
+            fontWeight: 600,
+            color: "rgba(31, 36, 38, 0.7)",
+            lineHeight: "1.3",
+            textAlign: "center",
+            marginTop: "4px",
+          }}>
+            Merchant Side<br/>interceptor
           </div>
         </div>
 
-        {/* Merchant-Side Interceptor */}
-        <div className="arch-interceptor-col">
-          <div className="arch-interceptor-box">
-            <span className="arch-interceptor-label">Merchant-Side<br/>Interceptor</span>
-          </div>
-        </div>
-
-        {/* Center: Protocols & Gateways */}
-        <div className="arch-protocols-col">
-          <div className="arch-protocols-box">
-            <div className="arch-protocols-header">
-              <span className="arch-label">Protocols & Rail</span>
+        {/* Center Column: Protocols & Gateways */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          {/* Protocols & Rail */}
+          <div style={{
+            border: "1.5px solid #3B82F6",
+            borderRadius: "8px",
+            padding: "14px 8px 10px",
+            background: "#ffffff",
+            position: "relative",
+            marginTop: "8px",
+          }}>
+            <div style={{
+              position: "absolute",
+              top: "-8px",
+              left: "10px",
+              background: "#ffffff",
+              padding: "1px 6px",
+              fontSize: "7px",
+              fontWeight: 700,
+              color: "rgba(31, 36, 38, 0.8)",
+              zIndex: 10,
+              whiteSpace: "nowrap",
+            }}>Protocol & Rail Processors</div>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "6px",
+            }}>
+              {[
+                { name: "4CP" },
+                { name: "Stripe" },
+                { name: "UCP" },
+                { name: "Agent Card" },
+                { name: "Monopay" },
+                { name: "x402" },
+              ].map((item, i) => (
+                <div key={i} style={{
+                  padding: "6px 4px",
+                  border: "1px solid rgba(31, 36, 38, 0.2)",
+                  borderRadius: "4px",
+                  fontSize: "7px",
+                  fontWeight: 600,
+                  color: "rgba(31, 36, 38, 0.6)",
+                  textAlign: "center",
+                  background: "#ffffff",
+                  minHeight: "24px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                  {item.name}
+                </div>
+              ))}
             </div>
-            <div className="arch-protocols-grid">
-              <div className="arch-protocol-item">
-                <span>API</span>
-              </div>
-              <div className="arch-protocol-item">
-                <span>Stripe</span>
-              </div>
-              <div className="arch-protocol-item">
-                <span>UCP</span>
-              </div>
-              <div className="arch-protocol-item">
-                <span>Krampayments</span>
-              </div>
-              <div className="arch-protocol-item">
-                <span>x402<br/>standard</span>
+          </div>
+
+          {/* Gateways */}
+          <div style={{
+            border: "1.5px solid #FB7728",
+            borderRadius: "8px",
+            padding: "12px 8px",
+            background: "#ffffff",
+            position: "relative",
+            minHeight: "50px",
+            display: "flex",
+            alignItems: "flex-start",
+          }}>
+            <div style={{
+              fontSize: "7px",
+              fontWeight: 600,
+              color: "rgba(31, 36, 38, 0.7)",
+            }}>Gateways</div>
+          </div>
+        </div>
+
+        {/* Buyer Side Column */}
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}>
+          <div style={{
+            height: "190px",
+            width: "45px",
+            border: "1.5px solid #FB7728",
+            borderRadius: "6px",
+            background: "#ffffff",
+          }} />
+        </div>
+
+        {/* Right Column: Agents */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          {["Agent Z", "Agent X"].map((agent, i) => (
+            <div key={i} style={{ position: "relative" }}>
+              <div style={{
+                width: "100px",
+                height: "50px",
+                border: "1.5px solid rgba(31, 36, 38, 0.2)",
+                borderRadius: "3px",
+                background: "#ffffff",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "4px",
+              }}>
+                <div style={{
+                  fontSize: "7px",
+                  fontWeight: 600,
+                  color: "rgba(31, 36, 38, 0.4)",
+                }}>
+                  {agent}
+                </div>
+                <div style={{
+                  background: "#10B981",
+                  color: "#ffffff",
+                  fontSize: "6px",
+                  fontWeight: 600,
+                  padding: "2px 6px",
+                  borderRadius: "3px",
+                }}>
+                  Buyer
+                </div>
               </div>
             </div>
-          </div>
-          <div className="arch-gateways-box">
-            <span className="arch-label">Gateways</span>
-          </div>
-        </div>
-
-        {/* Buyer Side Interceptor */}
-        <div className="arch-interceptor-col">
-          <div className="arch-interceptor-box">
-            <span className="arch-interceptor-label">Buyer Side<br/>Interceptor</span>
-          </div>
-        </div>
-
-        {/* Right: Agent boxes */}
-        <div className="arch-agents-col">
-          <div className="arch-agent-box">
-            <div className="arch-agent-window" />
-            <span className="arch-label">Agent Z</span>
-          </div>
-          <div className="arch-agent-box">
-            <div className="arch-agent-window" />
-            <span className="arch-label">Agent X</span>
+          ))}
+          {/* Buyer Side interceptor label below Agent X */}
+          <div style={{
+            fontSize: "7px",
+            fontWeight: 600,
+            color: "rgba(31, 36, 38, 0.7)",
+            lineHeight: "1.3",
+            textAlign: "center",
+            marginTop: "4px",
+          }}>
+            Buyer Side<br/>interceptor
           </div>
         </div>
       </div>
 
-      {/* Flow arrows */}
-      <div className="arch-flow-arrows">
-        <div className="arch-arrow-group" />
-        <div className="arch-arrow-group arch-arrow-multi">
-          <span>↓</span><span>↓</span><span>↓</span><span>↓</span>
-          <span>↓</span><span>↓</span><span>↓</span><span>↓</span>
-        </div>
-        <div className="arch-arrow-group" />
-      </div>
 
-      {/* Bottom label */}
-      <div className="arch-bottom-label">
-        <span>Railflare Intercept</span>
+      {/* Bottom: Railflare Button */}
+      <div style={{
+        marginTop: "12px",
+        marginBottom: "12px",
+        paddingLeft: "120px",
+        paddingRight: "120px",
+      }}>
+        <div style={{
+          background: "#FB7728",
+          borderRadius: "8px",
+          padding: "10px 24px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 4px 12px rgba(251, 119, 40, 0.3)",
+        }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/logo-lockup.png"
+            alt="railflare"
+            style={{
+              height: "14px",
+              filter: "brightness(0) invert(1)",
+            }}
+          />
+        </div>
       </div>
     </div>
   );
@@ -234,8 +399,8 @@ const STAGE: Record<TabId, {
   intercept: {
     num: "01",
     eyebrow: "Stage 01 — Intercept",
-    headline: "Every payment request. Caught before it clears.",
-    body: "Railflare sits between your agent and the payment rail. Before a single token moves, every outbound request passes through our interception layer — surfacing protocol, identity, and intent.",
+    headline: "Every Financial Actions Intercepted",
+    body: "Railflare plug-in sits at the merchant end as well as track and intercepts the gateway to extract insights around your commerce.",
     diagram: <InterceptDiagram />,
   },
   analyse: {
