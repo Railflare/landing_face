@@ -1,0 +1,12 @@
+{
+  "name": "Railflare",
+  "short_name": "Railflare",
+  "description": "Cloudflare for the agentic economy — giving control back to businesses without compromising agent autonomy over payments.",
+  "icons": [
+    { "src": "/assets/logo-mark.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "theme_color": "#F6821F",
+  "background_color": "#FAF7F2",
+  "display": "standalone",
+  "start_url": "/"
+}
