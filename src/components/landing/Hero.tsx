@@ -1,7 +1,15 @@
+'use client';
+
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import WaitlistModal from "../WaitlistModal";
 
 export default function Hero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
+    <>
+      <WaitlistModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     <div className="hero-outer">
       <div className="hero-frame">
 
@@ -26,9 +34,12 @@ export default function Hero() {
                   className="hero-logo"
                 />
               </a>
-              <a href="#waitlist" className="waitlist-btn">
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="waitlist-btn"
+              >
                 Join Waitlist
-              </a>
+              </button>
             </nav>
           </div>
 
@@ -67,5 +78,6 @@ export default function Hero() {
 
       </div>
     </div>
+    </>
   );
 }

@@ -1,7 +1,15 @@
+'use client';
+
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import WaitlistModal from "../WaitlistModal";
 
 export default function Footer() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
+    <>
+      <WaitlistModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     <footer
       style={{
         background: "var(--ink-950)",
@@ -86,8 +94,8 @@ export default function Footer() {
           >
             agent payments, watched.
           </p>
-          <a
-            href="#waitlist"
+          <button
+            onClick={() => setIsModalOpen(true)}
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -97,11 +105,12 @@ export default function Footer() {
               background: "#ffffff",
               padding: "12px 24px",
               borderRadius: 999,
-              textDecoration: "none",
+              border: "none",
+              cursor: "pointer",
             }}
           >
             join the waitlist <ArrowRight size={14} strokeWidth={2.5} />
-          </a>
+          </button>
         </div>
 
         {/* ── Brand tagline ─────────────────────────────────────────── */}
@@ -138,7 +147,9 @@ export default function Footer() {
           <div style={{ display: "flex", gap: 18, alignItems: "center" }}>
             {/* X / Twitter */}
             <a
-              href="#"
+              href="https://x.com/railflare"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="X (Twitter)"
               style={{ color: "rgba(244,238,229,0.32)", display: "flex" }}
             >
@@ -171,5 +182,6 @@ export default function Footer() {
 
       </div>
     </footer>
+    </>
   );
 }
