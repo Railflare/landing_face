@@ -49,6 +49,14 @@ export const metadata: Metadata = {
     title: META.title,
     description: META.description,
     locale: "en_US",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Railflare - Agent payments, watched.",
+      },
+    ],
   },
 
   twitter: {
@@ -57,6 +65,7 @@ export const metadata: Metadata = {
     creator: META.handle,
     title: META.title,
     description: META.description,
+    images: ["/og-image.png"],
   },
 
   icons: {
